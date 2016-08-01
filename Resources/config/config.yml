@@ -1,0 +1,11 @@
+victoire_core:
+    widgets:
+        Poll:
+            class: "Victoire\\Widget\\PollBundle\\Entity\\WidgetPoll"
+            name: Poll
+            cache: false
+jms_translation:
+    configs:
+        victoire_poll_bundle:
+            dirs: ["@VictoirePollBundle"]
+            output_dir: "@VictoirePollBundle/Resources/translations"
