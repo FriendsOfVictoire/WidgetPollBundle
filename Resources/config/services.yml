@@ -1,0 +1,14 @@
+services:
+    victoire_core.widget_poll_content_resolver:
+        class: Victoire\Widget\PollBundle\Resolver\WidgetPollContentResolver
+        parent: victoire_widget.base_widget_content_resolver
+        tags:
+            - { name: victoire_widget.widget_content_resolver, alias: Poll }
+
+    victoire.widget.poll:
+        class: Victoire\Widget\PollBundle\Entity\WidgetPoll
+
+    victoire.widget.form.poll:
+        class: Victoire\Widget\PollBundle\Form\WidgetPollType
+        tags:
+            - { name: form.type }
