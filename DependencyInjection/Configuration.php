@@ -23,6 +23,11 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('victoire_widget_poll', 'array');
         $rootNode
+            ->children()
+            ->booleanNode('victoire_menu_item')
+            ->defaultFalse()
+            ->end()
+            ->end()
             ->useAttributeAsKey('name')
             ->prototype('array')
                 ->children()
