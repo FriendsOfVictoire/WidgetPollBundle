@@ -12,6 +12,7 @@ use Victoire\Widget\PollBundle\Entity\Answer\Answer;
  * @ORM\Entity()
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"default" = "Question", "radio" = "Radio"})
  */
 class Question
 {
@@ -40,6 +41,7 @@ class Question
 
     /**
      * @var Answer[]
+     *
      * @ORM\OneToMany(targetEntity="Victoire\Widget\PollBundle\Entity\Answer\Answer", mappedBy="question")
      */
     private $answers;
@@ -52,6 +54,14 @@ class Question
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return 'default';
     }
 
     /**
