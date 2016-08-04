@@ -28,6 +28,10 @@ class VictoireWidgetPollExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $this->saveWidgetPollConfiguration($container, $config);
+
+        $container->setParameter(
+            'victoire_widget_poll.victoire_menu_item', $config['victoire_menu_item']
+        );
     }
     private function saveWidgetPollConfiguration(ContainerBuilder $container, $config)
     {
