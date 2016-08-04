@@ -6,13 +6,37 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="1" resname="widget.poll.new.action.label">
+      <trans-unit>
         <source>widget.poll.new.action.label</source>
-        <target state="new">Poll</target>
+        <target>Poll</target>
       </trans-unit>
-      <trans-unit id="2" resname="modal.form.widget.type.poll.label">
+      <trans-unit>
         <source>modal.form.widget.type.poll.label</source>
-        <target state="new">Poll</target>
+        <target>Poll</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.question</source>
+        <target>Simple question</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.radio</source>
+        <target>Unique choice</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.modal.results.title</source>
+        <target>Polls results</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.empty.polls</source>
+        <target>There is not any published poll yet.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.empty.questions</source>
+        <target>This poll doesn't have any question.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.modal.participant.number</source>
+        <target>%nb% participant(s)</target>
       </trans-unit>
     </body>
   </file>
