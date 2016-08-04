@@ -1,0 +1,16 @@
+{% trans_default_domain 'victoire' %}
+
+{% set answerNb = 0  %}
+{% for proposal in question.proposals %}
+    {% set answerNb = answerNb + proposal.answers|length %}
+{% endfor %}
+
+<p><i>{{ 'widget_poll.modal.participant.number'|trans({ '%nb%' : answerNb }) }}</i></p>
+<table class="table table-bordered" style="table-layout:fixed;">
+{% for proposal in question.proposals %}
+    <tr>
+        <td>{{ proposal.value }}</td>
+        <td>{{ ((proposal.answers|length)/answerNb*100)|round }}%</td>
+    </tr>
+{% endfor %}
+</table>

@@ -1,0 +1,12 @@
+{% trans_default_domain 'victoire' %}
+
+{% if questions|length > 0 %}
+    {% for question in questions %}
+        <h4>{{ question.title }}</h4>
+        {% if question.type == 'radio' %}
+            {% include '@VictoireWidgetPoll/includes/radioResults.html.twig' with { 'question' : question } %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {{ 'widget_poll.empty.questions'|trans }}
+{% endif %}
