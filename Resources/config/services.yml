@@ -19,6 +19,31 @@ services:
             - "@victoire.widget.poll.poll_configuration_chain"
         tags:
             - { name: form.type }
+    victoire.widget.form.paticipation:
+        class: Victoire\Widget\PollBundle\Form\Answer\ParticipationType
+        arguments:
+            - @victoire.widget.poll.poll_configuration_chain
+        tags:
+            - { name: form.type }
+
+    victoire.widget.poll.poll_question_chain:
+        class: Victoire\Widget\PollBundle\DependencyInjection\Chain\PollQuestionChain
+
+    victoire_widget_poll_question:
+        class: Victoire\Widget\PollBundle\Form\QuestionType
+        arguments:
+            - @victoire.widget.poll.poll_question_chain
+        tags:
+            - {name: form.type }
+            - {name: victoire_widget_poll.question, questionType: "question"}
+
+    victoire_widget_poll_radio:
+        class: Victoire\Widget\PollBundle\Form\QuestionRadioType
+        arguments:
+            - @victoire.widget.poll.poll_question_chain
+        tags:
+            - {name: form.type }
+            - {name: victoire_widget_poll.question, questionType: "radio"}
 
     victoire.widget.form.participation:
         class: Victoire\Widget\PollBundle\Form\Answer\ParticipationType
