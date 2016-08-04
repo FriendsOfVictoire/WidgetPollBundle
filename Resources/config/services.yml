@@ -87,3 +87,27 @@ services:
         tags:
             - { name: doctrine.event_listener, event: loadClassMetadata, priority: 10}
 
+
+    ## REPOSITORIES ##
+    victoire_widget_poll.repository.participation:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Victoire\Widget\PollBundle\Entity\WidgetPoll
+
+    ## VICTOIRE MENU ##
+    victoire_widget_poll.victoire_menu_listener:
+        class: Victoire\Widget\PollBundle\Listener\VictoireMenuListener
+        arguments:
+            - @victoire_core.admin_menu_builder
+            - %victoire_widget_poll.victoire_menu_item%
+        tags:
+            - { name: kernel.event_listener, event: victoire_core.build_menu, method: addGlobal, priority: 80 }
+
+    ## TWIG EXTENSIONS ##
+    victoire_widget_poll.twig.results_extension:
+        class: Victoire\Widget\PollBundle\Twig\ResultsExtension
+        arguments:
+            - @victoire_widget_poll.repository.participation
+        tags:
+            - { name: twig.extension }
