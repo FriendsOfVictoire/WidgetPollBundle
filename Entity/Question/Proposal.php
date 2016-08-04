@@ -2,7 +2,9 @@
 
 namespace Victoire\Widget\PollBundle\Entity\Question;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Victoire\Widget\PollBundle\Entity\Answer\RadioAnswer;
 use Victoire\Widget\PollBundle\Entity\Question;
 
 /**
@@ -33,6 +35,21 @@ class Proposal
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Radio", inversedBy="proposals")
      */
     private $question;
+
+    /**
+     * @var RadioAnswer[]
+     *
+     * @ORM\OneToMany(targetEntity="Victoire\Widget\PollBundle\Entity\Answer\RadioAnswer", mappedBy="proposal")
+     */
+    private $answers;
+
+    /**
+     * Proposal constructor.
+     */
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -91,4 +108,13 @@ class Proposal
     {
         return $this->question;
     }
+
+    /**
+     * @return RadioAnswer[]
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
 }

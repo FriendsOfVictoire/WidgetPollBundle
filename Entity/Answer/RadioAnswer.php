@@ -14,9 +14,18 @@ class RadioAnswer extends Answer
 {
     /**
      * @var Proposal
-     * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Proposal")
+     * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Proposal", inversedBy="answers")
      */
     private $proposal;
+
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return 'radio';
+    }
 
     /**
      * Set proposal

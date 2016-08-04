@@ -27,6 +27,14 @@ class Radio extends Question
     }
 
     /**
+     * @return string
+     */
+    public function getType()
+    {
+        return 'radio';
+    }
+
+    /**
      * Add proposal
      *
      * @param \Victoire\Widget\PollBundle\Entity\Question\Proposal $proposal
