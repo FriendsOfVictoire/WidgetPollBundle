@@ -18,6 +18,13 @@ class WidgetPoll extends Widget
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
      * @var Question []
      * @ORM\OneToMany(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Question", mappedBy="widget", cascade={"persist"})
      */
@@ -45,6 +52,30 @@ class WidgetPoll extends Widget
     public function __toString()
     {
         return 'Poll #'.$this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Question
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**

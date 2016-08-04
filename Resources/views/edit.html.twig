@@ -3,6 +3,7 @@
 {% block form_static %}
 <div id="picker-{{ form.mode.vars.data }}" class="vic-tab-pane {% if form.mode.vars.data == widget.mode %}vic-active{% endif %}">
     {{ form_start(form) }}
+    {{ form_row(form.title) }}
     {{ form_label(form.questions) }}
     <div id="{{ form.vars.id }}">
         <ul class="widget_poll_form_questions_collection" data-index="{{ form.questions|length }}" data-prototype="{{ _self.widget_prototype(form.questions.vars.prototype)|e }}">
