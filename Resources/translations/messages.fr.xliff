@@ -14,14 +14,6 @@
         <source>modal.form.widget.type.poll.label</source>
         <target state="new">Poll</target>
       </trans-unit>
-      <trans-unit id="3" resname="widget_poll.pollQuestion.question">
-        <source>widget_poll.pollQuestion.question</source>
-        <target state="new">Question simple</target>
-      </trans-unit>
-      <trans-unit id="3" resname="widget_poll.pollQuestion.radio">
-        <source>widget_poll.pollQuestion.radio</source>
-        <target state="new">Choix unique</target>
-      </trans-unit>
     </body>
   </file>
 </xliff>

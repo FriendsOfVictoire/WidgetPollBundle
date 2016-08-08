@@ -1,1 +1,40 @@
 {% extends 'VictoireCoreBundle:Widget:edit.html.twig' %}
+
+{% block form_static %}
+<div id="picker-{{ form.mode.vars.data }}" class="vic-tab-pane {% if form.mode.vars.data == widget.mode %}vic-active{% endif %}">
+    {{ form_start(form) }}
+    {{ form_label(form.questions) }}
+    <div id="{{ form.vars.id }}">
+        <ul class="widget_poll_form_questions_collection" data-index="{{ form.questions|length }}" data-prototype="{{ _self.widget_prototype(form.questions.vars.prototype)|e }}">
+            {% for child in form.questions %}
+                {{ _self.widget_prototype(child) }}
+            {% endfor %}
+        </ul>
+        <a href="#"  class="vic-btn vic-btn-default widget_poll_form_add_question">
+            Ajouter
+        </a>
+    </div>
+    {% do form.questions.setRendered %}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>
+
+{% endblock form_static %}
+{% macro widget_prototype(form) %}
+    <li>
+        <div class="vic_row">
+            <div class="col-md-6">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.type) }}
+            </div>
+        </div>
+        {% include '@VictoireWidgetPoll/Form/Question/' ~ form.vars.questionTemplate ~ 'Form.html.twig' %}
+        {% spaceless %}
+            <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
+                <i class="fa fa-trash-o"></i>
+            </a>
+        {% endspaceless %}
+    </li>
+{% endmacro %}

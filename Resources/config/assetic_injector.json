@@ -1,0 +1,19 @@
+{
+  "require_all":
+  {
+    "javascripts":
+    {
+      "victoire-edit":
+      [
+        "@VictoireWidgetPollBundle/Resources/public/js/questions.js"
+      ]
+    },
+    "stylesheets":
+    {
+      "head":
+      [
+        "@VictoireWidgetPollBundle/Resources/public/style/questions.scss"
+      ]
+    }
+  }
+}
