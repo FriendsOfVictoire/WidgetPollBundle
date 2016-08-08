@@ -1,0 +1,10 @@
+{% trans_default_domain 'victoire' %}
+
+{% if polls|length > 0 %}
+    {% for poll in polls %}
+        <h3>{{ poll.title }}</h3>
+        {% include '@VictoireWidgetPoll/includes/questionsResults.html.twig' with { 'questions' : poll.questions } %}
+    {% endfor %}
+{% else %}
+    {{ 'widget_poll.empty.polls'|trans }}
+{% endif %}

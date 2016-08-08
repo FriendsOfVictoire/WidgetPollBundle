@@ -3,8 +3,16 @@
 namespace Victoire\Widget\PollBundle\Resolver;
 
 
-use Victoire\Bundle\WidgetBundle\Entity\Widget;
+use Doctrine\ORM\EntityManager;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Victoire\Bundle\WidgetBundle\Model\Widget;
 use Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver;
+use Victoire\Widget\PollBundle\Entity\Answer\Participation;
+use Victoire\Widget\PollBundle\Entity\WidgetPoll;
+use Victoire\Widget\PollBundle\Form\Answer\ParticipationType;
 
 /**
  * CRUD operations on WidgetPoll Widget
@@ -31,15 +39,46 @@ use Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver;
  */
 class WidgetPollContentResolver extends BaseWidgetContentResolver
 {
+    private $formFactory;
+    private $router;
+    private $em;
+    private $requestStack;
+
+    public function __construct(FormFactory $factory, Router $router, RequestStack $requestStack, EntityManager $em)
+    {
+        $this->formFactory = $factory;
+        $this->router = $router;
+        $this->requestStack = $requestStack;
+        $this->em = $em;
+
+    }
+
     /**
      * Get the static content of the widget
      *
-     * @param Widget $widget
+     * @param WidgetPoll $widget
      * @return string The static content
      */
     public function getWidgetStaticContent(Widget $widget)
     {
-        return parent::getWidgetStaticContent($widget);
+        $parameters = parent::getWidgetStaticContent($widget);
+
+        $form = $this->formFactory->create(
+            ParticipationType::class, null, [
+                'questions' => $widget->getQuestions(),
+                'action' => $this->router->generate('victoire_poll_participation_add', [
+                    'id' => $widget->getId()
+                ]),
+                'attr' => [
+                    'data-toggle' => 'ajax'
+                ]
+            ]
+        );
+        $parameters['participationForm'] = $form->createView();
+        $parameters['alreadyVoted'] = $this->em->getRepository(Participation::class)->isRequestBlocked($this->requestStack->getCurrentRequest());
+
+
+        return $parameters;
     }
 
     /**
