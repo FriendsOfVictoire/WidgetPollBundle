@@ -1,6 +1,12 @@
 {% extends 'VictoireCoreBundle:Widget:show.html.twig' %}
 
 {% block content %}
-{{ parent() }}
-{# The parent display the content variable, you can do your custom display here #}
+    {% if not alreadyVoted %}
+    {{ form_start(participationForm) }}
+    {% for answer in participationForm.answers %}
+        {% include '@VictoireWidgetPoll/Form/Answer/' ~ answer.vars.answerTemplate ~ 'Form.html.twig' %}
+    {% endfor %}
+    {{ form_rest(participationForm) }}
+    {{ form_end(participationForm) }}
+    {% endif %}
 {% endblock content %}
