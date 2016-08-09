@@ -47,7 +47,7 @@ class VotingSubscriber implements EventSubscriber
             $metadatas = $eventArgs->getClassMetadata();
             if ($metadatas->name === 'Victoire\Widget\PollBundle\Entity\Voting') {
                 if (!$metadatas->hasAssociation('user')) {
-                    $metadatas->mapOneToOne([
+                    $metadatas->mapManyToOne([
                             'fieldName'    => 'user',
                             'targetEntity' => $this->userClass,
                             'cascade'      => ['persist'],

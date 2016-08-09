@@ -7,6 +7,7 @@ services:
             - "@router"
             - "@request_stack"
             - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
         tags:
             - { name: victoire_widget.widget_content_resolver, alias: Poll }
 
@@ -19,31 +20,6 @@ services:
             - "@victoire.widget.poll.poll_configuration_chain"
         tags:
             - { name: form.type }
-    victoire.widget.form.paticipation:
-        class: Victoire\Widget\PollBundle\Form\Answer\ParticipationType
-        arguments:
-            - @victoire.widget.poll.poll_configuration_chain
-        tags:
-            - { name: form.type }
-
-    victoire.widget.poll.poll_question_chain:
-        class: Victoire\Widget\PollBundle\DependencyInjection\Chain\PollQuestionChain
-
-    victoire_widget_poll_question:
-        class: Victoire\Widget\PollBundle\Form\QuestionType
-        arguments:
-            - @victoire.widget.poll.poll_question_chain
-        tags:
-            - {name: form.type }
-            - {name: victoire_widget_poll.question, questionType: "question"}
-
-    victoire_widget_poll_radio:
-        class: Victoire\Widget\PollBundle\Form\QuestionRadioType
-        arguments:
-            - @victoire.widget.poll.poll_question_chain
-        tags:
-            - {name: form.type }
-            - {name: victoire_widget_poll.question, questionType: "radio"}
 
     victoire.widget.form.participation:
         class: Victoire\Widget\PollBundle\Form\Answer\ParticipationType
@@ -80,6 +56,19 @@ services:
         parent: victoire_widget_poll_answer_default
         tags:
             - {name: form.type }
+
+    victoire_widget_poll__question_image:
+        class: Victoire\Widget\PollBundle\Form\Question\ImageChooserType
+        parent: victoire_widget_poll_question_default
+        tags:
+            - {name: form.type }
+
+    victoire_widget_poll__answer_image:
+        class: Victoire\Widget\PollBundle\Form\Answer\ImageAnswerType
+        parent: victoire_widget_poll_answer_default
+        tags:
+            - {name: form.type }
+
     victoire_widget_poll.voting_subscriber:
         class: Victoire\Widget\PollBundle\EventSubscriber\VotingSubscriber
         arguments:
@@ -109,5 +98,6 @@ services:
         class: Victoire\Widget\PollBundle\Twig\ResultsExtension
         arguments:
             - @victoire_widget_poll.repository.participation
+            - @victoire.widget.poll.poll_configuration_chain
         tags:
             - { name: twig.extension }

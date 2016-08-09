@@ -1,15 +1,15 @@
-{{ form_label(form.proposals) }}
+{{ form_label(form.images) }}
 <div id="{{ form.vars.id }}">
-    <ul class="widget_poll_form_questions_collection" data-index="{{ form.proposals|length }}" data-prototype="{{ _self.widget_prototype(form.proposals.vars.prototype)|e }}">
-        {% for child in form.proposals %}
+    <ul class="widget_poll_form_questions_collection" data-index="{{ form.images|length }}" data-prototype="{{ _self.widget_prototype(form.images.vars.prototype)|e }}">
+        {% for child in form.images %}
             {{ _self.widget_prototype(child) }}
         {% endfor %}
     </ul>
     <a href="#"  class="vic-btn vic-btn-default widget_poll_form_add_question">
-        Ajouter
+        {{ 'victoire.widget.poll.image.add'|trans }}
     </a>
 </div>
-{% do form.proposals.setRendered %}
+{% do form.images.setRendered %}
 
 {% macro widget_prototype(form) %}
     <li>

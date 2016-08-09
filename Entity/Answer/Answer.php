@@ -10,7 +10,7 @@ use Victoire\Widget\PollBundle\Entity\Question\Question;
  *
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"default" = "Answer", "radio" = "RadioAnswer"})
+ * @ORM\DiscriminatorMap({"default" = "Answer", "radio" = "RadioAnswer", "image" = "ImageAnswer"})
  * @ORM\Table("vic_widget_poll_answer")
  * @ORM\Entity
  */

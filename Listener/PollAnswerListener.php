@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Victoire\Widget\PollBundle\DependencyInjection\Chain\PollConfigurationChain;
 use Victoire\Widget\PollBundle\Entity\Answer\Participation;
+use Victoire\Widget\PollBundle\Entity\Question\Question;
 
 /**
  * Class PollAnswerListener.

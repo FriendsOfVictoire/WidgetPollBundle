@@ -32,10 +32,11 @@ class ParticipationController extends Controller
     public function addAction(Request $request, WidgetPoll $widget)
     {
         $em = $this->getDoctrine()->getManager();
-        if($widget->isSecure() && $em->getRepository(Participation::class)->isRequestBlocked($request))
+        if($widget->isSecure() && $em->getRepository(Participation::class)->isRequestBlocked($request, $widget))
         {
             return new JsonResponse([
-                'success' => false
+                'success' => false,
+                'html' => $this->get('victoire_widget_poll.twig.results_extension')->singleResult($this->get('twig'), $widget->getId())
             ]);
         }
         $participation = new Participation();
@@ -52,7 +53,8 @@ class ParticipationController extends Controller
                     'id' => $widget->getId()
                 ]),
                 'attr' => [
-                    'data-toggle' => 'ajax'
+                    'data-toggle' => 'ajax',
+                    'data-update' => 'victoire-widget-poll-form-' . $widget->getId()
                 ]
             ]
         );
@@ -66,13 +68,15 @@ class ParticipationController extends Controller
             $em->flush();
             return new JsonResponse(
                 [
-                    'success' => true
+                    'success' => true,
+                    'html' => $this->get('victoire_widget_poll.twig.results_extension')->singleResult($this->get('twig'), $widget->getId())
                 ]
             );
         }
         return new JsonResponse(
             [
-                'success' => false
+                'success' => false,
+                'html' => $this->get('victoire_widget_poll.twig.results_extension')->singleResult($this->get('twig'), $widget->getId())
             ]
         );
     }

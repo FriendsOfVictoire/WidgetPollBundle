@@ -3,9 +3,7 @@
 {% if questions|length > 0 %}
     {% for question in questions %}
         <h4>{{ question.title }}</h4>
-        {% if question.type == 'radio' %}
-            {% include '@VictoireWidgetPoll/includes/radioResults.html.twig' with { 'question' : question } %}
-        {% endif %}
+        {% include '@VictoireWidgetPoll/includes/'~ victoire_widget_poll_alias_for_question(question) ~'Results.html.twig' with { 'question' : question } %}
     {% endfor %}
 {% else %}
     {{ 'widget_poll.empty.questions'|trans }}

@@ -38,6 +38,42 @@
         <source>widget_poll.modal.participant.number</source>
         <target>%nb% participant(s)</target>
       </trans-unit>
+      <trans-unit>
+        <source>widget_poll.no.results/source>
+        <target>No results</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.secure.label</source>
+        <target>Only one participation per user/ip</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.questions.label</source>
+        <target>Poll's questions</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.title.label</source>
+        <target>Poll title</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.default</source>
+        <target>Default</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.image</source>
+        <target>Unique choice betwwen images</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.radio</source>
+        <target>Unique choice betwwen proposals</target>
+      </trans-unit>
+      <trans-unit>
+        <source>victoire.widget.poll.radio.add</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit>
+        <source>victoire.widget.poll.image.add</source>
+        <target>Add</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

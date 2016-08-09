@@ -18,15 +18,6 @@ class RadioAnswer extends Answer
      */
     private $proposal;
 
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return 'radio';
-    }
-
     /**
      * Set proposal
      *
