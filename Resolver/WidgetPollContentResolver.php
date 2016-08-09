@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Victoire\Bundle\WidgetBundle\Model\Widget;
 use Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver;
@@ -43,14 +44,15 @@ class WidgetPollContentResolver extends BaseWidgetContentResolver
     private $router;
     private $em;
     private $requestStack;
+    private $tokenStorage;
 
-    public function __construct(FormFactory $factory, Router $router, RequestStack $requestStack, EntityManager $em)
+    public function __construct(FormFactory $factory, Router $router, RequestStack $requestStack, EntityManager $em, TokenStorage $tokenStorage)
     {
         $this->formFactory = $factory;
         $this->router = $router;
         $this->requestStack = $requestStack;
         $this->em = $em;
-
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -62,23 +64,7 @@ class WidgetPollContentResolver extends BaseWidgetContentResolver
     public function getWidgetStaticContent(Widget $widget)
     {
         $parameters = parent::getWidgetStaticContent($widget);
-
-        $form = $this->formFactory->create(
-            ParticipationType::class, null, [
-                'questions' => $widget->getQuestions(),
-                'action' => $this->router->generate('victoire_poll_participation_add', [
-                    'id' => $widget->getId()
-                ]),
-                'attr' => [
-                    'data-toggle' => 'ajax'
-                ]
-            ]
-        );
-        $parameters['participationForm'] = $form->createView();
-        $parameters['alreadyVoted'] = $this->em->getRepository(Participation::class)->isRequestBlocked($this->requestStack->getCurrentRequest());
-
-
-        return $parameters;
+        return array_merge($parameters, $this->generateForm($widget));
     }
 
     /**
@@ -88,7 +74,8 @@ class WidgetPollContentResolver extends BaseWidgetContentResolver
      */
     public function getWidgetBusinessEntityContent(Widget $widget)
     {
-        return parent::getWidgetBusinessEntityContent($widget);
+        $parameters = parent::getWidgetBusinessEntityContent($widget);
+        return array_merge($parameters, $this->generateForm($widget));
     }
 
     /**
@@ -100,7 +87,8 @@ class WidgetPollContentResolver extends BaseWidgetContentResolver
      */
     public function getWidgetEntityContent(Widget $widget)
     {
-        return parent::getWidgetEntityContent($widget);
+        $parameters = parent::getWidgetEntityContent($widget);
+        return array_merge($parameters, $this->generateForm($widget));
     }
 
     /**
@@ -111,6 +99,30 @@ class WidgetPollContentResolver extends BaseWidgetContentResolver
      */
     public function getWidgetQueryContent(Widget $widget)
     {
-        return parent::getWidgetQueryContent($widget);
+        $parameters = parent::getWidgetQueryContent($widget);
+        return array_merge($parameters, $this->generateForm($widget));
+    }
+
+    private function generateForm(Widget $widget)
+    {
+        /** @var WidgetPoll $widget */
+        if($widget->isSecure()&& $this->em->getRepository(Participation::class)->isRequestBlocked($this->requestStack->getCurrentRequest(), $widget, $this->tokenStorage->getToken()->getUser()))
+        {
+            return [];
+        }
+        $form = $this->formFactory->create(
+            ParticipationType::class, null, [
+                'questions' => $widget->getQuestions(),
+                'action' => $this->router->generate('victoire_poll_participation_add', [
+                    'id' => $widget->getId()
+                ]),
+                'attr' => [
+                    'data-toggle' => 'ajax',
+                    'data-update' => 'victoire-widget-poll-form-' . $widget->getId()
+                ]
+            ]
+        );
+        $parameters['participationForm'] = $form->createView();
+        return $parameters;
     }
 }

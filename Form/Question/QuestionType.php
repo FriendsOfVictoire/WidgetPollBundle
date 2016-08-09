@@ -9,9 +9,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Victoire\Widget\PollBundle\DependencyInjection\Chain\PollConfigurationChain;
-use Victoire\Widget\PollBundle\Entity\Question;
-use Victoire\Widget\PollBundle\DependencyInjection\Chain\PollQuestionChain;
-use Victoire\Widget\PollBundle\Form\Answer\AnswerType;
 
 class QuestionType extends AbstractType
 {

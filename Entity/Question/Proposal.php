@@ -5,7 +5,7 @@ namespace Victoire\Widget\PollBundle\Entity\Question;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Victoire\Widget\PollBundle\Entity\Answer\RadioAnswer;
-use Victoire\Widget\PollBundle\Entity\Question;
+use Victoire\Widget\PollBundle\Entity\Question\Question;
 
 /**
  * Proposal

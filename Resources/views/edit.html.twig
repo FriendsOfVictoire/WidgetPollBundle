@@ -21,6 +21,10 @@
 </div>
 
 {% endblock form_static %}
+{% block form_entity %}
+
+
+{% endblock form_entity %}
 {% macro widget_prototype(form) %}
     <li>
         <div class="vic_row">
@@ -32,6 +36,7 @@
             </div>
         </div>
         {% include '@VictoireWidgetPoll/Form/Question/' ~ form.vars.questionTemplate ~ 'Form.html.twig' %}
+
         {% spaceless %}
             <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
                 <i class="fa fa-trash-o"></i>

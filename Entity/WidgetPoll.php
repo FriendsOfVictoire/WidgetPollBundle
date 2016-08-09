@@ -3,7 +3,6 @@ namespace Victoire\Widget\PollBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\Request;
 use Victoire\Bundle\WidgetBundle\Entity\Widget;
 use Victoire\Widget\PollBundle\Entity\Question\Question;
 
@@ -81,11 +80,11 @@ class WidgetPoll extends Widget
     /**
      * Add question
      *
-     * @param \Victoire\Widget\PollBundle\Entity\Question\Question $question
+     * @param Question $question
      *
      * @return WidgetPoll
      */
-    public function addQuestion(\Victoire\Widget\PollBundle\Entity\Question\Question $question)
+    public function addQuestion(Question $question)
     {
         $this->questions[] = $question;
         $question->setWidget($this);
@@ -96,9 +95,9 @@ class WidgetPoll extends Widget
     /**
      * Remove question
      *
-     * @param \Victoire\Widget\PollBundle\Entity\Question\Question $question
+     * @param Question $question
      */
-    public function removeQuestion(\Victoire\Widget\PollBundle\Entity\Question\Question $question)
+    public function removeQuestion(Question $question)
     {
         $this->questions->removeElement($question);
     }

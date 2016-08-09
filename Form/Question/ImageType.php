@@ -1,12 +1,14 @@
 <?php
 
-namespace Victoire\Widget\PollBundle\Form\Answer;
+namespace Victoire\Widget\PollBundle\Form\Question;
 
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Victoire\Bundle\MediaBundle\Form\Type\MediaType;
 
-class ParticipationType extends CollectionType
+class ImageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,23 +16,18 @@ class ParticipationType extends CollectionType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-        
+        $builder
+            ->add('value', MediaType::class)
+        ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
-            'questions' => [],
-            'data_class' => 'Victoire\Widget\PollBundle\Entity\Answer\Participation'
+            'data_class' => 'Victoire\Widget\PollBundle\Entity\Question\Image'
         ));
-    }
-    public function getParent()
-    {
-        return CollectionType::class;
     }
 }

@@ -10,7 +10,7 @@
 {% for proposal in question.proposals %}
     <tr>
         <td>{{ proposal.value }}</td>
-        <td>{{ ((proposal.answers|length)/answerNb*100)|round }}%</td>
+        <td>{% if answerNb == 0 %}{{ 'no.results'|trans }}{% else %}{{ ((proposal.answers|length)/answerNb*100)|round }}%</td>{% endif %}
     </tr>
 {% endfor %}
 </table>

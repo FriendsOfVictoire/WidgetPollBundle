@@ -30,7 +30,7 @@ class VictoireWidgetPollExtension extends Extension
         $this->saveWidgetPollConfiguration($container, $config);
 
         $container->setParameter(
-            'victoire_widget_poll.victoire_menu_item', $config['victoire_menu_item']
+            'victoire_widget_poll.victoire_menu_item', false
         );
     }
     private function saveWidgetPollConfiguration(ContainerBuilder $container, $config)

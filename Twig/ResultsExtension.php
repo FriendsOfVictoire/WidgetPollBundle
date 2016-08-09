@@ -3,20 +3,23 @@
 namespace Victoire\Widget\PollBundle\Twig;
 
 use Doctrine\ORM\EntityRepository;
+use Victoire\Widget\PollBundle\DependencyInjection\Chain\PollConfigurationChain;
+use Victoire\Widget\PollBundle\Entity\Question\Question;
 use Victoire\Widget\PollBundle\Entity\WidgetPoll;
 
 class ResultsExtension extends \Twig_Extension_Core
 {
     protected $pollRepo;
-
+    private $pollConfigurationchain;
     /**
      * ResultsExtension constructor.
      *
      * @param EntityRepository $pollRepo
      */
-    public function __construct(EntityRepository $pollRepo)
+    public function __construct(EntityRepository $pollRepo, PollConfigurationChain $chain)
     {
         $this->pollRepo = $pollRepo;
+        $this->pollConfigurationChain = $chain;
     }
 
     /**
@@ -29,6 +32,7 @@ class ResultsExtension extends \Twig_Extension_Core
         return [
             new \Twig_SimpleFunction('victoire_widget_poll_all_results', [$this, 'allResults'], ['is_safe' => ['html'],'needs_environment' => true]),
             new \Twig_SimpleFunction('victoire_widget_poll_single_result', [$this, 'singleResult'], ['is_safe' => ['html'],'needs_environment' => true]),
+            new \Twig_SimpleFunction('victoire_widget_poll_alias_for_question', [$this, 'getAliasForQuestion'], []),
         ];
     }
 
@@ -72,5 +76,10 @@ class ResultsExtension extends \Twig_Extension_Core
         }
 
         return $twig->render('@VictoireWidgetPoll/includes/questionsResults.html.twig', ['questions' => $poll->getQuestions()]);
+    }
+
+    public function getAliasForQuestion(Question $question)
+    {
+        return $this->pollConfigurationChain->getAliasFromQuestion($question);
     }
 }
