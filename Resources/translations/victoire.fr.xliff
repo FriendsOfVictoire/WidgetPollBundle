@@ -39,7 +39,7 @@
         <target>%nb% participant(s)</target>
       </trans-unit>
       <trans-unit>
-        <source>widget_poll.no.results/source>
+        <source>widget_poll.no.results</source>
         <target>No results</target>
       </trans-unit>
       <trans-unit>
