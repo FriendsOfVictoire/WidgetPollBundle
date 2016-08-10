@@ -1,4 +1,13 @@
 victoire_widget_poll:
+    default:
+        answer:
+            entity: Victoire\Widget\PollBundle\Entity\Answer\Answer
+            form: Victoire\Widget\PollBundle\Form\Answer\AnswerType
+            template: default
+        question:
+            entity: Victoire\Widget\PollBundle\Entity\Question\Question
+            form: Victoire\Widget\PollBundle\Form\Question\QuestionType
+            template: default
     radio:
         answer:
             entity: Victoire\Widget\PollBundle\Entity\Answer\RadioAnswer

@@ -40,35 +40,63 @@
       </trans-unit>
       <trans-unit>
         <source>widget_poll.no.results</source>
-        <target>Pas de résultats</target>
+        <target>No results</target>
       </trans-unit>
       <trans-unit>
         <source>widget.form.poll.secure.label</source>
-        <target>Blocage par ip/Compte d'utilisateur pour émpêcher de voter plusieurs fois</target>
+        <target>Only one participation per user/ip</target>
       </trans-unit>
       <trans-unit>
         <source>widget.form.poll.questions.label</source>
-        <target>Questions du sondage</target>
+        <target>Poll's questions</target>
       </trans-unit>
       <trans-unit>
         <source>widget.form.poll.title.label</source>
-        <target>Titre du sondage</target>
+        <target>Poll title</target>
       </trans-unit>
       <trans-unit>
         <source>widget_poll.pollQuestion.default</source>
-        <target>Par défaut</target>
+        <target>Default</target>
       </trans-unit>
       <trans-unit>
         <source>widget_poll.pollQuestion.image</source>
-        <target>Choix unique entre plusieurs images</target>
+        <target>Unique choice betwwen images</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget_poll.pollQuestion.radio</source>
+        <target>Unique choice betwwen proposals</target>
       </trans-unit>
       <trans-unit>
         <source>victoire.widget.poll.radio.add</source>
-        <target>Ajouter</target>
+        <target>Add</target>
       </trans-unit>
       <trans-unit>
         <source>victoire.widget.poll.image.add</source>
-        <target>Ajouter</target>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.question.imageChooser.images.label</source>
+        <target>Images</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.image.value.label</source>
+        <target>Value</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.proposal.value.label</source>
+        <target>Value</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.question.radio.proposals.label</source>
+        <target>Proposals</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.question.title.label</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit>
+        <source>widget.form.poll.question.type.label</source>
+        <target>Type</target>
       </trans-unit>
     </body>
   </file>

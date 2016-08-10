@@ -17,7 +17,9 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value', MediaType::class)
+            ->add('value', MediaType::class, [
+                'label' => 'widget.form.poll.image.value.label'
+            ])
         ;
     }
     

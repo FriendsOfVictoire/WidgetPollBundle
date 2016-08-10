@@ -26,7 +26,7 @@ class Image
 
     /**
      * @var string
-     * @ORM\OneToOne(targetEntity="Victoire\Bundle\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="Victoire\Bundle\MediaBundle\Entity\Media")
      */
     private $value;
 

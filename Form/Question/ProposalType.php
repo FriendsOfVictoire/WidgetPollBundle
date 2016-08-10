@@ -15,7 +15,9 @@ class ProposalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value')
+            ->add('value', null, [
+                'label' => 'widget.form.poll.proposal.value.label'
+            ])
         ;
     }
     

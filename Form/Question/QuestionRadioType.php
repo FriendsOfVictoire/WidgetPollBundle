@@ -21,6 +21,7 @@ class QuestionRadioType extends QuestionType
     {
         parent::buildForm($builder, $options);
         $builder->add("proposals", CollectionType::class, [
+            'label' => 'widget.form.poll.question.radio.proposals.label',
             "entry_type" => ProposalType::class,
             'allow_add' => true,
             'allow_delete' => true,
