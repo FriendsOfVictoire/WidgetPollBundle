@@ -31,7 +31,7 @@ class WidgetPollType extends WidgetType
             'required' => false
         ]);
         $builder->add('title', null, [
-            'label' => 'widget.form.poll.questions.label',
+            'label' => 'widget.form.poll.title.label',
             'required' => true
         ]);
         $builder->add('questions', CollectionType::class, [

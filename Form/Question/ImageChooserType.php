@@ -13,6 +13,7 @@ class ImageChooserType extends QuestionType
     {
         parent::buildForm($builder, $options);
         $builder->add("images", CollectionType::class, [
+            'label' => 'widget.form.poll.question.imageChooser.images.label',
             "entry_type" => ImageType::class,
             'allow_add' => true,
             'allow_delete' => true,

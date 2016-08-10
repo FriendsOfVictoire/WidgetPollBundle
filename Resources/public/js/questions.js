@@ -8,5 +8,5 @@ $vic(document).on('click', '.widget_poll_form_add_question', function(e){
 });
 $vic(document).on('click', '.widget_poll_form_remove_question', function(e){
     e.preventDefault();
-    $vic(this).parent('li').remove();
+    $vic(this).parent('div').parent('div').parent('li').remove();
 });

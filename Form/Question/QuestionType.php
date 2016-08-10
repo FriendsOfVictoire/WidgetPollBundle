@@ -30,9 +30,12 @@ class QuestionType extends AbstractType
         }
 
         $builder
-            ->add('title')
+            ->add('title', null, [
+                'label' => 'widget.form.poll.question.title.label'
+            ])
             ->add('type', ChoiceType::class, [
-               'choices' => $choices,
+                'label' => 'widget.form.poll.question.type.label',
+                'choices' => $choices,
                 'choices_as_values' => true,
                 'choice_label' => function($questionName, $key, $index) {
                     return 'widget_poll.pollQuestion.'. $questionName;

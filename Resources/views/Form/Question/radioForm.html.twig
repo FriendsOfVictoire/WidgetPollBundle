@@ -6,19 +6,25 @@
         {% endfor %}
     </ul>
     <a href="#"  class="vic-btn vic-btn-default widget_poll_form_add_question">
-        {{ 'victoire.widget.poll.radio.add'|trans }}
+        {{ 'victoire.widget.poll.radio.add' |trans({}, 'victoire')}}
     </a>
 </div>
 {% do form.proposals.setRendered %}
 
 {% macro widget_prototype(form) %}
     <li>
-        {{ form_widget(form) }}
-        {% spaceless %}
-            <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
-                <i class="fa fa-trash-o"></i>
-            </a>
-        {% endspaceless %}
+        <div class="vic-row">
+            <div class="col-md-9">
+                {{ form_widget(form) }}
+            </div>
+            <div class="col-md-3">
+                {% spaceless %}
+                    <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                {% endspaceless %}
+            </div>
+        </div>
     </li>
 {% endmacro %}
 {{ form_rest(form) }}

@@ -12,7 +12,7 @@
             {% endfor %}
         </ul>
         <a href="#"  class="vic-btn vic-btn-default widget_poll_form_add_question">
-            Ajouter
+            {{ 'victoire.widget.poll.radio.add' |trans({}, 'victoire')}}
         </a>
     </div>
     {% do form.questions.setRendered %}
@@ -27,20 +27,25 @@
 {% endblock form_entity %}
 {% macro widget_prototype(form) %}
     <li>
-        <div class="vic_row">
-            <div class="col-md-6">
-                {{ form_row(form.title) }}
+        <div class="vic-row">
+            <div class="col-md-10">
+                <div class="vic-row">
+                    <div class="col-md-6">
+                        {{ form_row(form.title) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.type) }}
+                    </div>
+                </div>
+                {% include '@VictoireWidgetPoll/Form/Question/' ~ form.vars.questionTemplate ~ 'Form.html.twig' %}
             </div>
-            <div class="col-md-6">
-                {{ form_row(form.type) }}
+            <div class="col-md-2">
+                {% spaceless %}
+                    <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                {% endspaceless %}
             </div>
         </div>
-        {% include '@VictoireWidgetPoll/Form/Question/' ~ form.vars.questionTemplate ~ 'Form.html.twig' %}
-
-        {% spaceless %}
-            <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
-                <i class="fa fa-trash-o"></i>
-            </a>
-        {% endspaceless %}
     </li>
 {% endmacro %}
