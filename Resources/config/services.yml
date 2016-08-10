@@ -83,6 +83,7 @@ services:
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
             - Victoire\Widget\PollBundle\Entity\WidgetPoll
+        lazy: true
 
     ## VICTOIRE MENU ##
     victoire_widget_poll.victoire_menu_listener:

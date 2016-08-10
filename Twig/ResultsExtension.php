@@ -10,7 +10,7 @@ use Victoire\Widget\PollBundle\Entity\WidgetPoll;
 class ResultsExtension extends \Twig_Extension_Core
 {
     protected $pollRepo;
-    private $pollConfigurationchain;
+    private $pollConfigurationChain;
     /**
      * ResultsExtension constructor.
      *
