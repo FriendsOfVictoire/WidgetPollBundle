@@ -1,8 +1,0 @@
-{% block _participation_viewRefId_widget %}
-    {{ form_widget(form) }}
-    <script>
-        $(document).ready(function(){
-            $('#{{ form.vars.id }}').val(viewReferenceId);console.log('here');
-        });
-    </script>
-{% endblock %}
