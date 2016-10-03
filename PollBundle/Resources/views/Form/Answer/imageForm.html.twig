@@ -1,0 +1,7 @@
+{{ form_label(answer.image) }}
+{% for child in answer.image %}
+    <div>
+        {{ form_widget(child) }}
+        <img src="{{ asset(child.vars.label) }}" width="30" height="30">
+    </div>
+{% endfor %}

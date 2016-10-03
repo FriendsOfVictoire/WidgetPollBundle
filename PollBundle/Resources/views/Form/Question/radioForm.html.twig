@@ -1,0 +1,30 @@
+{{ form_label(form.proposals) }}
+<div id="{{ form.vars.id }}">
+    <ul class="widget_poll_form_questions_collection" data-index="{{ form.proposals|length }}" data-prototype="{{ _self.widget_prototype(form.proposals.vars.prototype)|e }}">
+        {% for child in form.proposals %}
+            {{ _self.widget_prototype(child) }}
+        {% endfor %}
+    </ul>
+    <a href="#"  class="vic-btn vic-btn-default widget_poll_form_add_question">
+        {{ 'victoire.widget.poll.radio.add' |trans({}, 'victoire')}}
+    </a>
+</div>
+{% do form.proposals.setRendered %}
+
+{% macro widget_prototype(form) %}
+    <li>
+        <div class="vic-row">
+            <div class="col-md-9">
+                {{ form_widget(form) }}
+            </div>
+            <div class="col-md-3">
+                {% spaceless %}
+                    <a href="#" class="vic-btn -square -framed vic-btn-danger widget_poll_form_remove_question">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                {% endspaceless %}
+            </div>
+        </div>
+    </li>
+{% endmacro %}
+{{ form_rest(form) }}
