@@ -15,17 +15,17 @@ class RadioAnswer extends Answer
     /**
      * @var Proposal
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Proposal", inversedBy="answers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $proposal;
 
     /**
      * Set proposal.
      *
-     * @param \Victoire\Widget\PollBundle\Entity\Question\Proposal $proposal
-     *
+     * @param Proposal $proposal
      * @return RadioAnswer
      */
-    public function setProposal(\Victoire\Widget\PollBundle\Entity\Question\Proposal $proposal = null)
+    public function setProposal(Proposal $proposal = null)
     {
         $this->proposal = $proposal;
         $this->setQuestion($proposal->getQuestion());
@@ -36,7 +36,7 @@ class RadioAnswer extends Answer
     /**
      * Get proposal.
      *
-     * @return \Victoire\Widget\PollBundle\Entity\Question\Proposal
+     * @return Proposal
      */
     public function getProposal()
     {

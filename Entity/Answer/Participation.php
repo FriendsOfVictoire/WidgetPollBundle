@@ -26,6 +26,7 @@ class Participation
     /**
      * @var WidgetPoll
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\WidgetPoll")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $widgetPoll;
 

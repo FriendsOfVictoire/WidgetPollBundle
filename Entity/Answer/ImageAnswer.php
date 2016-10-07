@@ -15,6 +15,7 @@ class ImageAnswer extends Answer
     /**
      * @var Image
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Image", inversedBy="answers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $image;
 
