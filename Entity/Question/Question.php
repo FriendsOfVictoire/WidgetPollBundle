@@ -37,6 +37,7 @@ class Question
      * @var WidgetPoll
      *
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\WidgetPoll", inversedBy="questions")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $widget;
 

@@ -21,12 +21,14 @@ class Answer
     /**
      * @var Question
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Question\Question", inversedBy="answers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $question;
 
     /**
      * @var Participation
      * @ORM\ManyToOne(targetEntity="Victoire\Widget\PollBundle\Entity\Answer\Participation", inversedBy="answers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $participation;
 
